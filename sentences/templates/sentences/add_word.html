@@ -1,0 +1,13 @@
+{% extends "sentences/base.html" %}
+
+{% block content %}
+<div class="container mt-3">
+    <h2>Add New Word</h2>
+
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Add Word</button>
+    </form>
+</div>
+{% endblock %}

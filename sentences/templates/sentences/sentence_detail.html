@@ -1,0 +1,22 @@
+{% extends "sentences/base.html" %}
+
+{% block content %}
+<div class="container mt-3">
+    <h3>{{ sentence.value }}</h3>
+
+    {% if words %}
+    <ul class="list-group mt-3">
+        {% for word in words %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div>
+                {{word.index}} - {{ word.name }}
+            </div>
+            <div>
+                <a href="{% url 'word_detail' word.id %}" type="button" class="btn btn-link">Detail</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}

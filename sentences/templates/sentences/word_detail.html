@@ -1,0 +1,29 @@
+{% extends "sentences/base.html" %}
+
+{% block content %}
+<div class="container mt-3">
+    <h2>{{ word.name }} ({{word.language.code}})</h2>
+
+    {% if translations %}
+    <h5>Translations</h5>
+    <ul>
+        {% for translate in translations %}
+            <li>
+                {{ translate.value }} ({{translate.language.code}})
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if sentences %}
+    <h5>Example used</h5>
+    <ul>
+        {% for sentence in sentences %}
+            <li>
+                {{sentence.index}} - {{ sentence.value }}
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "sentences/base.html" %}
+
+{% block content %}
+<div class="container mt-3">
+    <h1>Word list</h1>
+    <a class="btn btn-success" href="{% url 'add_word' %}">Add</a>
+
+    <form class="d-flex mt-3" role="search" action="{% url 'word_list' %}" method="post">
+        {% csrf_token %}
+        <input name="search_text" value="{{ search_text }}" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    {% if words %}
+    <ul class="list-group mt-3">
+        {% for word in words %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div>
+                {{ word.name }}
+            </div>
+            <div>
+                <a href="{% url 'word_detail' word.id %}" type="button" class="btn btn-link">Detail</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
