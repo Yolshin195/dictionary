@@ -3,6 +3,7 @@ from django.db import transaction
 
 from .models import Word, Sentence, SentenceWord
 from .services.sentence_splitter import sentence_split
+from .tasks import ru_translate
 
 
 class WordForm(forms.ModelForm):
@@ -44,6 +45,9 @@ class SentenceForm(forms.ModelForm):
             for index, word_text in enumerate(words):
                 language = self.cleaned_data['language']
                 word, created = Word.objects.get_or_create(code=word_text.upper(), name=word_text, language=language)
+
+                if created:
+                    ru_translate.delsy(word.id)
 
                 SentenceWord.objects.create(
                     word=word,

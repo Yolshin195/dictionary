@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+    container_name: django_dictionary
+    command: ["/dictionary/docker/dictionary_app_run.sh"]
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env-docker
+    depends_on:
+      - redis
+      - db
+      - celery_worker
+
+  celery_worker:
+    build:
+      context: .
+    depends_on:
+      - redis
+      - db
+    command: celery -A video_processing_service worker -l INFO --pool=solo
+
+  redis:
+    image: "redis:alpine"
+    container_name: redis_server
+    ports:
+      - "6379:6379"
+
+  db:
+    image: "postgres:16"
+    container_name: db_dictionary
+    environment:
+      POSTGRES_DB: dictionary_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    command: -p 5435
+    expose:
+      - 5435
