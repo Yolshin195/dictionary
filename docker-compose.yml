@@ -21,7 +21,7 @@ services:
     depends_on:
       - redis
       - db
-    command: celery -A video_processing_service worker -l INFO --pool=solo
+    command: celery -A dictionary worker -l INFO --pool=solo
 
   redis:
     image: "redis:alpine"
