@@ -1,0 +1,14 @@
+- model: sentences.Language
+  pk: "35896517-41bd-4363-8e5d-0b9fdefe902e"
+  fields:
+    created_at: 2024-01-04T12:34:56.789Z
+    updated_at: 2024-01-04T12:34:56.789Z
+    code: en
+    name: English
+- model: sentences.Language
+  pk: "51f95393-64e4-473d-9424-de54facb4cbe"
+  fields:
+    created_at: 2024-01-04T12:34:56.789Z
+    updated_at: 2024-01-04T12:34:56.789Z
+    code: ru
+    name: Russian
