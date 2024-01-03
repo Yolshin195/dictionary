@@ -47,7 +47,7 @@ class SentenceForm(forms.ModelForm):
                 word, created = Word.objects.get_or_create(code=word_text.upper(), name=word_text, language=language)
 
                 if created:
-                    ru_translate.delsy(word.id)
+                    ru_translate.delay(word.id)
 
                 SentenceWord.objects.create(
                     word=word,

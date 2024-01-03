@@ -8,7 +8,7 @@ from sentences.services.parse_word import parse_word
 @shared_task
 def ru_translate(word_id: str):
     word = Word.objects.get(id=word_id)
-    ru_language = Language.objects.get(code="RU")
+    ru_language = Language.objects.get(code="ru")
 
     if not word or not ru_language:
         return
