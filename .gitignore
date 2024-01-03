@@ -173,3 +173,4 @@ fabric.properties
 
 ### Django ###
 db.sqlite3
+dictionary/settings/settings_dev.py
