@@ -5,7 +5,7 @@ services:
     build:
       context: .
     container_name: django_dictionary
-    command: ["/dictionary/docker/dictionary_app_run.sh"]
+    command: ["bash", "/dictionary/docker/dictionary_app_run.sh"]
     volumes:
       - .:/dictionary
     ports:
